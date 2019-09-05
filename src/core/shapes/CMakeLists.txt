@@ -8,6 +8,7 @@ set(Shapes_SRC
     Sphere.cpp
     SpheroCylinder.cpp
     Stomatocyte.cpp
+    ThroatBodyPore.cpp
     Torus.cpp
     Wall.cpp
 )

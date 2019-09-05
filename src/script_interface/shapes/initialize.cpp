@@ -29,6 +29,7 @@
 #include "Sphere.hpp"
 #include "SpheroCylinder.hpp"
 #include "Stomatocyte.hpp"
+#include "ThroatBodyPore.hpp"
 #include "Torus.hpp"
 #include "Wall.hpp"
 
@@ -56,6 +57,8 @@ void initialize() {
       "Shapes::Stomatocyte");
   ScriptInterface::register_new<ScriptInterface::Shapes::SimplePore>(
       "Shapes::SimplePore");
+  ScriptInterface::register_new<ScriptInterface::Shapes::ThroatBodyPore>(
+      "Shapes::ThroatBodyPore");
   ScriptInterface::register_new<ScriptInterface::Shapes::Torus>(
       "Shapes::Torus");
 }

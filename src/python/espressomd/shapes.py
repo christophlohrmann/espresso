@@ -277,3 +277,27 @@ class SimplePore(Shape, ScriptInterfaceHelper):
 
     """
     _so_name = "Shapes::SimplePore"
+
+@script_interface_register
+class ThroatBodyPore(Shape, ScriptInterfaceHelper):
+
+    """
+    Two parallel infinite planes, and a cylindrical channel connecting them.
+    The cylinder and the planes are connected by torus segments with an
+    adjustable radius.
+
+    Attributes
+    ----------
+    radius: float
+        The radius of the pore.
+    length: float
+        The distance between the planes.
+    smoothing_radius: float
+        Radius of the torus segments
+    axis: (3,) array_like of :obj:`float`
+        Axis of the cylinder and normal of the planes
+    center: (3,) array_like of :obj:`float`
+        Position of the center of the cylinder.
+
+    """
+    _so_name = "Shapes::ThroatBodyPore"
