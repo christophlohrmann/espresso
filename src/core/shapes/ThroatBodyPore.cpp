@@ -19,13 +19,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "ThroatBodyPore.hpp"
 
-#include <cassert>
-
 namespace Shapes {
-
+//does not actually calculate distance but just gives a flag if in or out
 void ThroatBodyPore::calculate_dist(const Utils::Vector3d &pos, double &dist,
                                 Utils::Vector3d &vec) const {
-    //does not calculate distance but just gives a flag if in or out
+                                    
     Utils::Vector3d pos_rel = pos - m_center;
     
     vec = Utils::Vector3d({0,0,1});
@@ -34,7 +32,8 @@ void ThroatBodyPore::calculate_dist(const Utils::Vector3d &pos, double &dist,
         dist = 1;
     if (std::abs(pos_rel[1])<m_width/2.)
         dist = 1;
-    if (pos_rel.norm() < m_radius)
+    //can't use .norm() here because for cylinder only x and y matter
+    if (std::sqrt(std::pow(pos_rel[0],2) + std::pow(pos_rel[1],2)) < m_radius)
         dist = 1;
     return;
 }
