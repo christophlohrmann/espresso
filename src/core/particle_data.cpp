@@ -829,7 +829,7 @@ void set_particle_dip(int part, double const *const dip) {
       convert_dip_to_quat(Utils::Vector3d({dip[0], dip[1], dip[2]}));
 
   set_particle_dipm(part, dipm);
-  set_particle_quat(part, quat.data());
+  set_particle_quat(part, quat);
 }
 
 #endif
@@ -912,10 +912,14 @@ void set_particle_mol_id(int part, int mid) {
 }
 
 #ifdef ROTATION
-void set_particle_quat(int part, double *quat) {
+void set_particle_quat(int part, Utils::Vector4d const &quat) {
   mpi_update_particle<ParticlePosition, &Particle::r, Utils::Vector4d,
-                      &ParticlePosition::quat>(part,
-                                               Utils::Vector4d(quat, quat + 4));
+                      &ParticlePosition::quat>(part, quat);
+}
+
+void set_particle_director(int part, const Utils::Vector3d &director) {
+  auto quat = Utils::convert_director_to_quaternion(director);
+  set_particle_quat(part, quat);
 }
 
 void set_particle_omega_lab(int part, const Utils::Vector3d &omega_lab) {

@@ -284,7 +284,13 @@ void set_particle_mol_id(int part, int mid);
  *  @param part the particle.
  *  @param quat its new value for quaternions.
  */
-void set_particle_quat(int part, double *quat);
+void set_particle_quat(int part, Utils::Vector4d const &quat);
+
+/** Call only on the master node: set particle director.
+ *  @param part the particle.
+ *  @param director its new director.
+ */
+void set_particle_director(int part, const Utils::Vector3d &director);
 
 /** Call only on the master node: set particle angular velocity from lab frame.
  *  @param part the particle.

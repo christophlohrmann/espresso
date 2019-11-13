@@ -414,7 +414,7 @@ cdef class ParticleHandle:
             """
 
             def __set__(self, _q):
-                cdef double myq[4]
+                cdef Vector4d myq
                 check_type_or_throw_except(
                     _q, 4, float, "Quaternions has to be 4 floats.")
                 for i in range(4):
@@ -434,14 +434,17 @@ cdef class ParticleHandle:
             Director.
 
             .. note::
-               Setting the director is not implemented.
                This needs the feature ``ROTATION``.
 
             """
 
-            def __set__(self, _q):
-                raise AttributeError(
-                    "Setting the director is not implemented in the C++-core of Espresso.")
+            def __set__(self, _d):
+                check_type_or_throw_except(
+                    _d, 3, float, "Director has to be 3 floats")
+                cdef Vector3d myd
+                for i in range(3):
+                    myd[i] = _d[i]
+                set_particle_director(self._id, myd)
 
             def __get__(self):
                 self.update_particle_data()

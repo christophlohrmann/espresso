@@ -119,6 +119,10 @@ class ParticleProperties(ut.TestCase):
         # The tested value has to be normalized!
         test_quat = generateTestForVectorProperty(
             "quat", np.array([0.5, 0.5, 0.5, 0.5]))
+        director = np.array([2., 3., 4.])
+        director /= np.linalg.norm(director)
+        test_director = generateTestForVectorProperty(
+            "director", director)
 
         if espressomd.has_features(["LANGEVIN_PER_PARTICLE"]):
             if espressomd.has_features(["PARTICLE_ANISOTROPY"]):
@@ -147,8 +151,6 @@ class ParticleProperties(ut.TestCase):
             else:
                 test_gamma_rot = generateTestForScalarProperty(
                     "gamma_rot", 14.23)
-    # test_director=generateTestForVectorProperty("director",
-    # np.array([0.5,0.4,0.3]))
 
     if espressomd.has_features(["ELECTROSTATICS"]):
         test_charge = generateTestForScalarProperty("q", -19.7)

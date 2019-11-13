@@ -112,7 +112,8 @@ cdef extern from "particle_data.hpp":
     void set_particle_mol_id(int part, int mid)
 
     IF ROTATION:
-        void set_particle_quat(int part, double quat[4])
+        void set_particle_quat(int part, Vector4d quat)
+        void set_particle_director(int part, Vector3d director)
         void pointer_to_quat(const particle * p, const double * & res)
         void set_particle_omega_lab(int part, Vector3d omega)
         void set_particle_omega_body(int part, Vector3d omega)
