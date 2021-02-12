@@ -32,7 +32,7 @@ class TestCylindricalObservable(ut.TestCase):
     system.cell_system.skin = 0.4
 
     params = {
-        'ids': list(range(100)),
+        'ids': None,
         'center': 3 * [7.5],
         'axis': [np.sqrt(2), np.sqrt(2), 0],
         'orientation': [0, 0, 1],
@@ -98,8 +98,7 @@ class TestCylindricalObservable(ut.TestCase):
         After calculating the core observables, the result should be the same as the np histogram obtained from the original box frame.
         """
         
-        positions, velocities = self.calc_ellipsis_pos_vel(len(
-            self.params['ids']), 0.99 * self.params['min_z'], 0.9 * self.params['max_z'], semi_x= 0.9 * self.params['max_r'], semi_y= 0.2 * self.params['max_r'])
+        positions, velocities = self.calc_ellipsis_pos_vel(100, 0.99 * self.params['min_z'], 0.9 * self.params['max_z'], semi_x= 0.9 * self.params['max_r'], semi_y= 0.2 * self.params['max_r'])
 
         # first, get the numpy histogram of the cylinder coordinates
         pos_cyl = []
@@ -120,6 +119,7 @@ class TestCylindricalObservable(ut.TestCase):
                 self.params['center'])
             vel_aligned.append(self.align_with_observable_frame(vel))
         self.system.part.add(pos=pos_aligned, v=vel_aligned)
+        self.params['ids'] = self.system.part[:].id
                
         return np_dens, np_edges
     

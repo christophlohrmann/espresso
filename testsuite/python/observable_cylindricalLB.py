@@ -40,7 +40,7 @@ class CylindricalLBObservableCommon:
                 'tau': 0.1,
                 }
     params = {
-        'ids': list(range(9)),
+        'ids': None,
         'center': 3*[7],
         'axis': [1,0,0],
         'orientation' : [0,0,1],
@@ -116,6 +116,7 @@ class CylindricalLBObservableCommon:
             vel_aligned.append(self.align_with_observable_frame(vel))
         node_aligned= np.array(np.rint( np.array(pos_aligned)-3*[0.5]) , dtype = int)   
         self.system.part.add(pos=pos_aligned, v = vel_aligned)
+        self.params['ids'] = self.system.part[:].id
         
         for node,vel in zip(node_aligned, vel_aligned):
             self.lbf[node].velocity=vel
