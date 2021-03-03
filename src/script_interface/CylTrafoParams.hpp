@@ -44,6 +44,9 @@ public:
                         [this]() { return m_cyl_trafo_params->get_orientation(); }
                     } });
   }
+  std::shared_ptr<::Utils::CylTrafoParams> cyl_trafo_params(){
+    return m_cyl_trafo_params;
+  }
 
 private:
   std::shared_ptr<::Utils::CylTrafoParams> m_cyl_trafo_params;
