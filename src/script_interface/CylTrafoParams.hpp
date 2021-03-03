@@ -30,7 +30,7 @@ namespace ScriptInterface {
 
 class CylTrafoParams : public AutoParameters<CylTrafoParams> {
 public:
-  CylTrafoParams() : m_cyl_trafo_params(new ::Utils::CylTrafoParams()) {
+  CylTrafoParams() {
     add_parameters({{"center",
                              [this](Variant const &v) { m_cyl_trafo_params->set_center(get_value<Utils::Vector3d>(v));},
                         [this]() { return m_cyl_trafo_params->get_center(); }

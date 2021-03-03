@@ -140,7 +140,12 @@ public:
   }
 
   void do_construct(VariantMap const &params) override {
+    if (params.count("cyl_trafo_params")) {
       set_from_args(m_cyl_trafo_params, params, "cyl_trafo_params");
+    }
+    else {
+      m_cyl_trafo_params = std::make_shared<CylTrafoParams>(new CylTrafoParams());
+    }
       m_observable = std::make_shared<CoreCylLBObs>(
           m_cyl_trafo_params->cyl_trafo_params(),
           get_value_or<int>(params, "n_r_bins", 1),
