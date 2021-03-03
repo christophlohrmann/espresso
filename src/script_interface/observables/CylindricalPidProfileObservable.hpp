@@ -61,7 +61,7 @@ public:
                get_value<std::vector<int>>(v);
          },
          [this]() { return cylindrical_pid_profile_observable()->ids(); }},
-        {"cyl_tafo_params", Utils::as_const(m_cyl_trafo_params)},
+        {"cyl_trafo_params", m_cyl_trafo_params},
         {"n_r_bins",
          [this](const Variant &v) {
            cylindrical_pid_profile_observable()->n_bins[0] =
