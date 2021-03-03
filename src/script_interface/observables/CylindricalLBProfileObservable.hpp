@@ -151,7 +151,8 @@ public:
           get_value_or<double>(params, "min_phi", -Utils::pi()),
           get_value_or<double>(params, "max_phi", Utils::pi()),
           get_value<double>(params, "min_z"),
-          get_value<double>(params, "max_z"));
+          get_value<double>(params, "max_z"),
+          get_value<double>(params, "sampling_density"));
     }
 
   Variant do_call_method(std::string const &method,
